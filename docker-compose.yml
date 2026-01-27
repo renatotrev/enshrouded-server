@@ -30,3 +30,5 @@ services:
       - SERVER_ROLE_0_CAN_EDIT_WORLD=true
       - SERVER_ROLE_0_CAN_EDIT_BASE=true
       - SERVER_ROLE_0_CAN_EXTEND_BASE=true
+      - SERVER_ENABLE_TEXT_CHAT=true
+      - RESTART_CRON=0 4 * * *
