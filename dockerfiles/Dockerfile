@@ -38,8 +38,9 @@ RUN mkdir -p /usr/local/etc /var/log/supervisor /var/run/enshrouded /usr/local/e
     && sed -i '/imklog/s/^/#/' /etc/rsyslog.conf \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY ../supervisord.conf /etc/supervisor/supervisord.conf
-COPY --chmod=755 ../scripts/default/* ../scripts/wine/* /usr/local/etc/enshrouded/
+COPY supervisord.conf /etc/supervisor/supervisord.conf
+COPY scripts/default/* scripts/wine/* /usr/local/etc/enshrouded/
+RUN chmod 755 /usr/local/etc/enshrouded/*
 
 WORKDIR /usr/local/etc/enshrouded
 CMD ["/usr/local/etc/enshrouded/bootstrap"]

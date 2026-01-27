@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   enshrouded:
     build:
@@ -14,11 +16,17 @@ services:
       - "15637:15637/udp"
     volumes:
       - ./game:/opt/enshrouded
-    devices:
-      - /dev/ntsync:/dev/ntsync
     environment:
-      - SERVER_NAME=MornedhelsTest
+      - SERVER_NAME=Os Sem Pingolinha
       - PUID=4711
       - PGID=4711
       - UPDATE_CRON=*/30 * * * *
+      - SERVER_SAVE_DIR=/opt/enshrouded/saves
       - log_level=50
+      - SERVER_ROLE_0_NAME=Admins
+      - SERVER_ROLE_0_PASSWORD=1955
+      - SERVER_ROLE_0_CAN_KICK_BAN=true
+      - SERVER_ROLE_0_CAN_ACCESS_INVENTORIES=true
+      - SERVER_ROLE_0_CAN_EDIT_WORLD=true
+      - SERVER_ROLE_0_CAN_EDIT_BASE=true
+      - SERVER_ROLE_0_CAN_EXTEND_BASE=true
