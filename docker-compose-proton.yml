@@ -14,8 +14,6 @@ services:
       - "15637:15637/udp"
     volumes:
       - ./game:/opt/enshrouded
-    devices:
-      - /dev/ntsync:/dev/ntsync
     environment:
       - SERVER_NAME=Os Sem Pingolinha
       - SERVER_SLOT_COUNT=6
