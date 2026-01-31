@@ -58,8 +58,8 @@ RUN mkdir -p /usr/local/etc /var/log/supervisor /var/run/enshrouded /usr/local/e
 COPY --from=builder /tmp/proton /usr/local/bin
 COPY --from=builder /etc/machine-id /etc/machine-id
 
-COPY ../supervisord.conf /etc/supervisor/supervisord.conf
-COPY --chmod=755 ../scripts/default/* ../scripts/proton/* /usr/local/etc/enshrouded/
+COPY supervisord.conf /etc/supervisor/supervisord.conf
+COPY --chmod=755 scripts/default/* scripts/proton/* /usr/local/etc/enshrouded/
 
 WORKDIR /usr/local/etc/enshrouded
 CMD ["/usr/local/etc/enshrouded/bootstrap"]
