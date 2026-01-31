@@ -18,6 +18,7 @@ services:
       - ./game:/opt/enshrouded
     environment:
       - SERVER_NAME=Os Sem Pingolinha
+      - SERVER_SLOT_COUNT=6
       - PUID=4711
       - PGID=4711
       - UPDATE_CRON=*/30 * * * *
@@ -31,4 +32,7 @@ services:
       - SERVER_ROLE_0_CAN_EDIT_BASE=true
       - SERVER_ROLE_0_CAN_EXTEND_BASE=true
       - SERVER_ENABLE_TEXT_CHAT=true
-      - RESTART_CRON=0 4 * * *
+      - RESTART_CRON=0 7 * * *
+      - BACKUP_CRON=*/15 * * * *
+      - BACKUP_DIR=/opt/enshrouded/backups
+      - BACKUP_MAX_COUNT=3
