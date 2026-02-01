@@ -1,4 +1,4 @@
 /.idea
 /.vs/*
 /game/server
-/game/server/current_version
+/game/current_version
