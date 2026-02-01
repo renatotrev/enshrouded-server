@@ -34,3 +34,4 @@ services:
       - BACKUP_CRON=*/15 * * * *
       - BACKUP_DIR=/opt/enshrouded/backups
       - BACKUP_MAX_COUNT=3
+      - SERVER_GS_FACTORY_PRODUCTION_SPEED_FACTOR=1
