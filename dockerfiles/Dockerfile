@@ -1,4 +1,4 @@
-FROM steamcmd/steamcmd:ubuntu-24@sha256:c3130294ee39a25bb554332240b2053a4e01bb362255f85e010f8fbe78561e92
+FROM steamcmd/steamcmd:ubuntu-26@sha256:076bc1bae5c7da8e96ac19ec93beafabdc7f1c379287d97f3e529f9a236074c6
 LABEL maintainer="docker@mornedhels.de"
 
 # Install prerequisites
@@ -19,11 +19,13 @@ RUN apt-get update \
 ARG WINE_BRANCH=stable
 RUN dpkg --add-architecture i386 \
     && mkdir -pm755 /etc/apt/keyrings \
-    && curl -o /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key \
-    && curl -O --output-dir /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/$(grep VERSION_CODENAME= /etc/os-release | cut -d= -f2)/winehq-$(grep VERSION_CODENAME= /etc/os-release | cut -d= -f2).sources \
+    && curl -fsSL https://dl.winehq.org/wine-builds/winehq.key -o /etc/apt/keyrings/winehq-archive.asc \
+    && CODENAME=$(. /etc/os-release && echo "$VERSION_CODENAME") \
+    && curl -fsSL "https://dl.winehq.org/wine-builds/ubuntu/dists/${CODENAME}/winehq-${CODENAME}.sources" \
+       | sed 's/winehq-archive\.key/winehq-archive.asc/' > "/etc/apt/sources.list.d/winehq-${CODENAME}.sources" \
     && apt update && DEBIAN_FRONTEND="noninteractive" apt -y --install-recommends install wine-${WINE_BRANCH} \
     && ln -s /opt/wine-$WINE_BRANCH/bin/* /usr/local/bin/ \
-    && apt autoremove --purge && apt clean \
+    && apt autoremove --purge -y && apt clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install winetricks (unused)
