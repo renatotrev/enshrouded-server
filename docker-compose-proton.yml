@@ -30,6 +30,7 @@ services:
       - SERVER_ROLE_0_CAN_EDIT_BASE=true
       - SERVER_ROLE_0_CAN_EXTEND_BASE=true
       - SERVER_ENABLE_TEXT_CHAT=true
+      - SERVER_GS_PERK_UPGRADE_RECYCLING_FACTOR=1.0
       - RESTART_CRON=0 7 * * *
       - BACKUP_CRON=*/15 * * * *
       - BACKUP_DIR=/opt/enshrouded/backups
